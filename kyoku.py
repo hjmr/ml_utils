@@ -3,7 +3,9 @@ from .pai_const import code2pai, code2disp
 
 
 class Kyoku:
-    def __init__(self, kyoku_data: list, player_names: dict = None):
+    def __init__(self, kyoku_data: list, gameid: str, player_names: dict = None):
+        self.gameid = gameid
+
         self.player_codes = ["A0", "B0", "C0", "D0"]
         self.players = {}
         for p_code in self.player_codes:
@@ -57,7 +59,7 @@ class Kyoku:
 
         entry = self.kyoku_data[self.current_step]
         if entry["cmd"] not in self.commands:
-            raise ValueError(f"Invalid command: {entry['cmd']}")
+            raise ValueError(f"Game: {self.gameid} Invalid command: {entry['cmd']}")
         playing = self.commands[entry["cmd"]](entry["args"])
         self.current_step += 1
         return playing
@@ -147,7 +149,7 @@ class Kyoku:
             else:
                 player.point = int(args[1])
         else:
-            raise ValueError("Invalid point operation")
+            raise ValueError(f"Game: {self.gameid} Invalid point operation.")
         return True
 
     def show(self):
