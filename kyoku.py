@@ -60,7 +60,11 @@ class Kyoku:
         entry = self.kyoku_data[self.current_step]
         if entry["cmd"] not in self.commands:
             raise ValueError(f"Game: {self.gameid} Invalid command: {entry['cmd']}")
-        playing = self.commands[entry["cmd"]](entry["args"])
+        try:
+            playing = self.commands[entry["cmd"]](entry["args"])
+        except Exception as e:
+            print(f"Game: {self.gameid} Error: {e}")
+            playing = False
         self.current_step += 1
         return playing
 
