@@ -1,5 +1,5 @@
 import itertools
-from pai_const import code2disp
+from .pai_const import code2disp
 
 sutehai_flags = {
     "tedashi": 0,

@@ -1,5 +1,5 @@
-from player import Player
-from pai_const import code2pai, code2disp
+from .player import Player
+from .pai_const import code2pai, code2disp
 
 
 class Kyoku:
