@@ -63,7 +63,7 @@ class Kyoku:
         try:
             playing = self.commands[entry["cmd"]](entry["args"])
         except Exception as e:
-            print(f"Game: {self.gameid} Error: {e}")
+            print(f"Game: {self.gameid} {type(e).__name__}: {e}")
             playing = False
         self.current_step += 1
         return playing
@@ -153,7 +153,7 @@ class Kyoku:
             else:
                 player.point = int(args[1])
         else:
-            raise ValueError(f"Game: {self.gameid} Invalid point operation.")
+            raise ValueError("Invalid point operation.")
         return True
 
     def show(self):
